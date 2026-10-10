@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="fr"> 
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#0b1a1c">
+  <title>TWLdle</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" href="images/logo.png" sizes="32x32" href="/assets/icons/favicon-32x32.png">
+  <link rel="icon" href="images/logo.png">
+  <link rel="apple-touch-icon" href=" images/logo.png">
+</head>
+<body> 
+  <!-- Fond d'écran: place ton image (portrait) dans images/fond.jpg.
+       Elle est centrée ; sur les écrans plus larges, le fond de base apparaît sur les côtés. -->
+  <div class="wallpaper" aria-hidden="true">
+    <img src="images/fond.jpg" alt="" onerror="this.remove()">
+  </div>
+
+  <main>
+    <h1>TWLdle</h1>
+
+    <div id="home">
+      <p class="tag">Devine les personnages de <i>The White Lotus</i></p>
+      <div class="cards">
+        <button data-t="a"><i>🪷</i><b>Classique</b><small>Trouve le perso grâce aux indices</small></button>
+        <button data-t="b"><i>💬</i><b>Citation</b><small>Qui a dit cette réplique ?</small></button>
+        <button data-t="c"><i>🔍</i><b>Portrait flou</b><small>Reconnais le perso sur une photo floue</small></button>
+      </div>
+    </div>
+
+    <button id="back" hidden>← Menu</button>
+    <section id="a"></section>
+    <section id="b"></section>
+    <section id="c"></section>
+  </main>
+
+  <script src="js/data.js"></script>
+  <script src="js/utils.js"></script>
+  <script src="js/picker.js"></script>
+  <script src="js/game.js"></script>
+  <script src="js/classic-game.js"></script>
+  <script src="js/blur-game.js"></script>
+  <script src="js/home-button.js" data-href="../index.html"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

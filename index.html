@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#0b1a1c">
+  <title>Marsdle · Devine les personnages de tes univers préférés</title>
+  <meta name="description" content="Une collection de jeux de devinettes inspirés de tes univers préférés : Harry Potter, The White Lotus et bien d'autres à venir.">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Marsdle · Devine les personnages de tes univers préférés">
+  <meta property="og:description" content="Jeux de devinettes quotidiens : modes Classique, Citation, Portrait flou et plus encore.">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%AA%B7%3C/text%3E%3C/svg%3E">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div class="wallpaper" aria-hidden="true">
+    <img src="images/fond.jpg" alt="" onerror="this.remove()">
+  </div>
+
+  <a class="skip" href="#univers">Aller aux jeux</a>
+
+  <header class="hero">
+    <p class="eyebrow">Jeux de devinettes</p>
+    <h1 id="marque">Marsdle</h1>
+    <div class="divider" aria-hidden="true"><span>✦</span></div>
+    <p class="lead">Devine les personnages de tes univers préférés.<br>Choisis un univers et lance la partie.</p>
+    <p class="stats" id="stats" aria-live="polite"></p>
+  </header>
+
+  <main id="univers" aria-labelledby="marque">
+    <div class="grid" id="grille"></div>
+  </main>
+
+  <footer class="pied">
+    <p>Projet d'un fan, indépendant et sans but lucratif. Les noms, personnages et marques cités appartiennent à leurs propriétaires respectifs et ne sont ni affiliés ni approuvés par eux.</p>
+    <p class="copy">© <span id="annee"></span> Marsdle</p>
+  </footer>
+
+  <script src="js/univers.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
