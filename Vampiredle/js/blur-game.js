@@ -36,7 +36,7 @@ function creerJeuFlou(sectionId) {
       const image = new Image();
       image.onload = () => resolve(personnage);
       image.onerror = () => resolve(null);
-      image.src = `Vampiredle/images/${nomFichierImage(personnage.nom)}.jpg`;
+      image.src = `/Vampiredle/images/${nomFichierImage(personnage.nom)}.jpg`;
     }));
 
     return Promise.all(tests).then(resultats => {
@@ -58,7 +58,7 @@ function creerJeuFlou(sectionId) {
       <div class="flou-cadre">
         <img
           class="flou-photo"
-          src="Vampiredle/images/${nomFichierImage(cible.nom)}.jpg"
+          src="/Vampiredle/images/${nomFichierImage(cible.nom)}.jpg"
           style="filter: blur(${victoire ? 0 : flou}px)"
         >
       </div>
@@ -108,7 +108,7 @@ function creerJeuFlou(sectionId) {
         zonePhoto.innerHTML = `
           <blockquote>
             Aucune photo trouvée. Ajoute des portraits dans le dossier
-            <b>images/</b> (ex. <b>Vampiredle/images/cedric-digory.jpg</b>).
+            <b>images/</b> (ex. <b>Marsdle/Vampiredle/images/cedric-digory.jpg</b>).
           </blockquote>
         `;
         zonePicker.style.display = "none";
