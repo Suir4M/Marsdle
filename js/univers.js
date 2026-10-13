@@ -83,6 +83,6 @@ const UNIVERS = [
     url: "",
     statut: "bientot",
     modes: [],
-    visible: true
+    visible: false
   }
 ];
