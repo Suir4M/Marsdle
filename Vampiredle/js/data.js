@@ -52,6 +52,7 @@ Enzo|Homme|Vampire|Aucune|Brun|5|Allié
 Lily Salvatore|Femme|Vampire|Salvatore|Brun|6|Méchant
 Kai Parker|Homme|Sorcier|Parker|Brun|6|Méchant
 Julian|Homme|Vampire|Aucune|Brun|6|Méchant
+Roh-roh|Femme|Humain|Rousseau|Brun|0|Soeur
 `.trim();
 
 const PERSONNAGES = PERSONNAGES_BRUTS.split("\n").map(ligne => {
@@ -69,6 +70,7 @@ function trouverPersonnage(nom) {
  * ont une réplique.
  */
 const CITATIONS = [
+  "Roh-roh", "Ma viiiiiie", ""
 ].map(([nom, fr, en]) => ({
   personnage: trouverPersonnage(nom),
   citation: fr,

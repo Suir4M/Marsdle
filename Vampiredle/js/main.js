@@ -4,6 +4,7 @@
 
 document.addEventListener("DOMContentLoaded", () => {
   initialiserModeClassique();
+  creerJeuFlou("c");
   creerJeuCitation("b", CITATIONS);
 
   /* Le mode Citation n'est proposé que s'il y a assez de personnages différents. */
