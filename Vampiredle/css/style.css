@@ -1,0 +1,204 @@
+/* =========================================================
+   Vampiredle : thème noir, bordeaux et argent doré (même base que les autres jeux)
+   ========================================================= */
+
+:root {
+  box-sizing: border-box;
+  --bg: #0d0709;
+  --fg: #f1ecdd;
+  --card: rgba(26, 11, 16, .86);
+  --bd: #5a2230;
+  --gold: #e6d2b5;
+  --ac: #c0394f;
+  --ok: #2f9457;
+  --no: #b9503f;
+  --mid: #d6963a;
+}
+
+html { scroll-padding-top: env(safe-area-inset-top, 0px); }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--fg);
+  font-family: Georgia, "Palatino Linotype", serif;
+  min-height: 100vh;
+  padding-top: env(safe-area-inset-top, 0px);
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+
+/* Fond de base (visible sur les côtés quand l'écran est plus large que l'image) */
+.wallpaper {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  overflow: hidden;
+  background:
+    radial-gradient(900px 520px at 50% -10%, #5a1220, transparent),
+    linear-gradient(#0d0709, #050203);
+}
+
+/* Ton image (portrait) : taille FIXE, jamais modifiée par la fenêtre.
+   - largeur : 600px (les cartes font 560px), ou toute la largeur sur téléphone ;
+   - hauteur : proportionnelle (l'image n'est jamais déformée ni zoomée) ;
+   - collée en haut, centrée, assombrie pour la lisibilité ;
+   - si l'écran est plus haut que l'image, le bas se fond dans le fond de base ;
+     s'il est plus court, le bas de l'image est simplement coupé. */
+.wallpaper img {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: min(600px, 100vw);
+  height: auto;
+  max-width: none;
+  transform: translateX(-50%);
+  filter: brightness(.55);
+  box-shadow: 0 0 40px rgba(0, 0, 0, .6);
+  -webkit-mask-image: linear-gradient(to bottom, #000 88%, transparent);
+  mask-image: linear-gradient(to bottom, #000 88%, transparent);
+}
+
+main { max-width: 560px; margin: 0 auto; padding: 12px 12px 40px; position: relative; }
+
+h1 {
+  font-size: 36px;
+  margin: 8px 0 12px;
+  text-align: center;
+  color: var(--gold);
+  font-variant: small-caps;
+  letter-spacing: 4px;
+  text-shadow: 0 2px 16px rgba(0, 0, 0, .55);
+}
+h1::before, h1::after { content: "🩸"; font-size: 20px; margin: 0 10px; letter-spacing: 0; }
+
+.tag { text-align: center; opacity: .9; margin: 0 0 18px; font-size: 15px; text-shadow: 0 1px 8px rgba(0,0,0,.6); }
+
+/* Boutons du menu */
+.cards { display: grid; gap: 12px; }
+.cards button {
+  display: grid; grid-template-columns: 60px 1fr; column-gap: 14px; align-items: center;
+  text-align: left; font: inherit; color: var(--fg);
+  background: var(--card); backdrop-filter: blur(6px);
+  border: 1px solid var(--bd); border-radius: 18px; padding: 14px;
+  box-shadow: 0 6px 18px rgba(0,0,0,.35); transition: .2s;
+}
+.cards button:active { border-color: var(--gold); transform: translateY(-2px); }
+@media (hover: hover) { .cards button:hover { border-color: var(--gold); transform: translateY(-2px); } }
+.cards button:disabled { opacity: .55; transform: none; border-style: dashed; }
+.cards i {
+  grid-row: 1 / 3; font-style: normal; font-size: 30px; width: 60px; height: 60px; border-radius: 16px;
+  display: flex; align-items: center; justify-content: center;
+  background: radial-gradient(circle, #7a1a2c, #260810); border: 1px solid var(--gold);
+}
+.cards b { font-size: 19px; color: var(--gold); align-self: end; }
+.cards small { opacity: .8; font-size: 13px; align-self: start; }
+
+#back {
+  font: inherit; font-size: 14px; background: var(--card); color: var(--gold);
+  border: 1px solid var(--bd); border-radius: 20px; padding: 7px 14px; margin-bottom: 10px;
+}
+#back[hidden], #home[hidden] { display: none; }
+
+section { display: none; }
+section.on { display: block; }
+
+/* Recherche */
+.pk { position: relative; }
+input {
+  width: 100%; box-sizing: border-box; font: inherit; font-size: 16px; padding: 12px;
+  border: 1px solid var(--gold); border-radius: 12px;
+  background: rgba(18, 7, 11, .94); color: var(--fg); box-shadow: 0 2px 10px rgba(0,0,0,.25);
+}
+.sg { display: flex; flex-direction: column; margin-top: 4px; }
+.sg button {
+  font: inherit; text-align: left; padding: 10px 12px; min-height: 44px;
+  border: 1px solid var(--bd); border-top: 0; background: var(--card); backdrop-filter: blur(6px); color: var(--fg);
+}
+.sg button:last-child { border-radius: 0 0 10px 10px; }
+
+button { touch-action: manipulation; -webkit-tap-highlight-color: transparent; }
+
+/* Zone de jeu */
+.sub { font-size: 13px; text-align: center; opacity: .85; margin: 0 0 8px; text-shadow: 0 1px 6px rgba(0,0,0,.6); }
+.st { text-align: center; margin: 8px 0 14px; }
+blockquote {
+  margin: 0; padding: 16px; border-left: 4px solid var(--gold);
+  background: var(--card); backdrop-filter: blur(6px);
+  font-size: 19px; font-style: italic; text-align: left; border-radius: 6px;
+}
+blockquote small { display: block; margin-top: 8px; font-size: 13px; opacity: .65; }
+
+.chips { display: flex; flex-wrap: wrap; gap: 6px; margin: 8px 0; }
+.chip { padding: 5px 10px; border-radius: 14px; background: var(--no); color: #fff; font-size: 13px; box-shadow: 0 1px 4px rgba(0,0,0,.25); }
+
+.win {
+  display: flex; flex-direction: column; align-items: center; gap: 10px; text-align: center;
+  font-size: 17px; padding: 12px; margin: 10px 0;
+  background: var(--card); backdrop-filter: blur(6px);
+  border: 2px solid var(--gold); border-radius: 16px; box-shadow: 0 6px 22px rgba(0,0,0,.3);
+  animation: pop .5s both;
+}
+.win.late { animation-delay: 2.7s; }
+.win small { display: block; opacity: .75; font-size: 13px; margin-top: 2px; }
+@keyframes pop { from { transform: scale(.85); opacity: 0; } to { transform: none; opacity: 1; } }
+
+.nw {
+  font: inherit; width: 100%; margin-top: 14px; padding: 11px;
+  border: 1px solid var(--gold); background: var(--card); color: var(--gold); border-radius: 12px;
+}
+
+/* Tableau du mode classique : 1 colonne nom + 6 indices */
+.row { display: grid; grid-template-columns: 1.2fr repeat(6, 1fr); gap: 3px; margin-top: 3px; align-items: stretch; }
+.hd .c { background: none; color: var(--gold); font-size: 10px; box-shadow: none; }
+.c {
+  font-family: system-ui, sans-serif; font-size: 10px; padding: 6px 2px; border-radius: 10px;
+  text-align: center; color: #fff; display: flex; align-items: center; justify-content: center;
+  word-break: break-word; hyphens: auto; min-height: 40px; font-weight: 600;
+  box-shadow: 0 2px 6px rgba(0,0,0,.25);
+}
+.c.nm { background: var(--card); backdrop-filter: blur(6px); color: var(--fg); border: 1px solid var(--bd); font-weight: 700; }
+.ok { background: var(--ok); } .no { background: var(--no); } .mid { background: var(--mid); }
+.row.new .c { animation: flip .55s both; animation-delay: calc((var(--i, -1) + 1) * .45s); }
+@keyframes flip { from { transform: rotateX(90deg) scale(.8); opacity: 0; } to { transform: none; opacity: 1; } }
+
+/* Portraits : images/<nom>.jpg, initiales si absent */
+.av {
+  position: relative; border-radius: 50%; background: #5a1a28; color: #fff; font-weight: 700;
+  display: flex; align-items: center; justify-content: center; overflow: hidden;
+  border: 3px solid var(--gold); flex: none;
+}
+.av.lg { width: 120px; height: 120px; font-size: 38px; }
+.av img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: 2; }
+.av span { display: flex; align-items: center; justify-content: center; width: 100%; height: 100%; color: var(--gold); }
+.av.fallback img { display: none; }
+
+/* Mode portrait flou : cadre de taille fixe, le flou est contenu dans le cadre */
+.flou-cadre {
+  width: min(260px, 80vw);
+  aspect-ratio: 3 / 4;
+  margin: 0 auto 10px;
+  overflow: hidden;
+  border-radius: 18px;
+  border: 2px solid var(--gold);
+  background: var(--card);
+  box-shadow: 0 6px 22px rgba(0, 0, 0, .35);
+}
+.flou-photo {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  transform: scale(1.12); /* cache les bords clairs du flou */
+  transition: filter .6s ease;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+@media (max-width: 480px) {
+  main { padding-left: 6px; padding-right: 6px; }
+  h1 { font-size: 30px; }
+  .row { gap: 2px; }
+  .c { font-size: 8px; padding: 5px 1px; min-height: 42px; border-radius: 7px; }
+  .hd .c { font-size: 7.5px; }
+}
