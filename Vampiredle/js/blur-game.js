@@ -36,7 +36,7 @@ function creerJeuFlou(sectionId) {
       const image = new Image();
       image.onload = () => resolve(personnage);
       image.onerror = () => resolve(null);
-      image.src = `/Vampiredle/images/${nomFichierImage(personnage.nom)}.jpg`;
+      image.src = `images/${nomFichierImage(personnage.nom)}.jpg`;
     }));
 
     return Promise.all(tests).then(resultats => {
@@ -58,7 +58,7 @@ function creerJeuFlou(sectionId) {
       <div class="flou-cadre">
         <img
           class="flou-photo"
-          src="/Vampiredle/images/${nomFichierImage(cible.nom)}.jpg"
+          src="images/${nomFichierImage(cible.nom)}.jpg"
           style="filter: blur(${victoire ? 0 : flou}px)"
         >
       </div>
