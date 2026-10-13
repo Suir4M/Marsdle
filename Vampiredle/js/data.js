@@ -69,8 +69,37 @@ function trouverPersonnage(nom) {
  * Le mode Citation s'active tout seul dès qu'au moins 3 personnages différents
  * ont une réplique.
  */
+
 const CITATIONS = [
-  "Roh-roh", "Ma viiiiiie", ""
+  ["Roh-roh", "Ma viiiiiie.", ""],
+  ["Damon Salvatore", "Salut, frangin !", "Hello, brother !"],
+  ["Damon Salvatore", "Transmets mes amitiés aux écureuils.", ""],
+  ["Damon Salvatore", "Ce mec c'est witchkipedia.", ""],
+  ["Damon Salvatore", "N'importe qui. N'importe quand. N'importe où.", ""],
+  ["Damon Salvatore", "J'ai été amoureux, c'est douloureux, inutile, et sur-coté.", ""],
+  ["Damon Salvatore", "Quand je tue des gens, ils sont supposés rester morts.", ""],
+  ["Damon Salvatore", "Je suis là pour manger de la barbe à papa et te voler ta copine.", ""],
+  ["Klaus Mikaelson", "Ne sous-estime pas l'attrait des ténèbres, Stefan, même les cœurs les plus purs y sont attirés.", ""],
+  ["Klaus Mikaelson", "J'ai essayé d'arrêter de penser à toi. Et je ne peux pas.", ""],
+  ["Klaus Mikaelson", "Et bien ce n'est pas difficile d'être  loyal quand tu es dans l'équipe gagnante.", ""],
+  ["Klaus Mikaelson", "La question importante c'est qui je suis", ""],
+  ["Stefan Salvatore", "Je suis un vampire... Et voici mon histoire.", ""],
+  ["Stefan Salvatore", "Ne flirte pas avec moi, Katherine.", ""],
+  ["Stefan Salvatore", "Nous choisissons notre propre chemin. Nos valeurs et nos actions, ils définnissent ce que nous sommes.", ""],
+  ["Elena Gilbert", "Nos actes ont toujours des conséquences... Mais il faut qu'on vive avec.", ""],
+  ["Elena Gilbert", "La confiance engendre la confiance, on l'obtient quand on l'accorde.", ""],
+  ["Elena Gilbert", "Je ne vois pas comment je pourrais être plus en sécurité, j'ai Damon le psychopathe égoïste dans mon camp !", ""],
+  ["Elena Gilbert", "C'est ce que t'es en train de faire ? Essayer de me faire te haïr ?", ""],
+  ["Katherine Pierce", "Embrasse-moi ou tue moi.", ""],
+  ["Katherine Pierce", "Mieux vaut vous que moi.", ""],
+  ["Katherine Pierce", "Il est juste à côté de moi. Même si son coeur est à l'autre bout de la pièce.", ""],
+  ["Katherine Pierce", "Tu peux les aimer tous les deux, moi je l'ai bien fait.", ""],
+  ["Katherine Pierce", "Les gens changent, je ne suis plus la fille que tu pense que je suis.", "People change, I'm not the girl you think I am."],
+  ["Tyler Lockwood", "La seule chose que j'aime chez moi, c'est toi.", ""],
+  ["Lexi Branson", "Si tu veux être avec quelqu'un pour toujours, il faut vivre pour toujours.", ""],
+  ["Isobel Flemming", "Je suis tellement désolée, Elena... d'avoir été une telle déception pour toi.", ""],
+  ["Alaric Saltzman","Quelle meilleure cachette que celle dont l'auteur est introuvable ?",""],
+  ["Rebekah Mikaelson", "Tais-toi, ou la prochaine chose qui sortira de ta bouche, ce sont tes dents.", ""],
 ].map(([nom, fr, en]) => ({
   personnage: trouverPersonnage(nom),
   citation: fr,

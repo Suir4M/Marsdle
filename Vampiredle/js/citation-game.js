@@ -5,17 +5,6 @@
 function creerJeuCitation(sectionId, liste) {
   const section = document.querySelector(`#${sectionId}`);
 
-  /* Pas encore de répliques : on n'affiche rien de cassé. */
-  if (!liste.length) {
-    section.innerHTML = `
-      <blockquote>
-        Aucune réplique pour le moment. Ajoute-en dans la liste
-        <b>CITATIONS</b> de <b>js/data.js</b>.
-      </blockquote>
-    `;
-    return;
-  }
-
   section.innerHTML = `
     <div class="st"></div>
     <div class="pk"></div>
@@ -47,7 +36,7 @@ function creerJeuCitation(sectionId, liste) {
           ${creerAvatar(question.personnage, "lg")}
           <span>
             🎉 C’était <b>${question.personnage.nom}</b> !
-            <small>Saison ${question.personnage.saison}</small>
+            <small>joué par ${question.personnage.acteur}</small>
             Trouvé en ${mauvaisesReponses.length + 1}
             essai${mauvaisesReponses.length ? "s" : ""}.
           </span>
@@ -74,7 +63,8 @@ function creerJeuCitation(sectionId, liste) {
   }
 
   function demarrer() {
-    /* On tire d'abord un personnage, puis une de ses répliques. */
+    /* On tire d'abord un personnage, puis une de ses répliques :
+       un personnage très cité (Tanya) ne domine pas le jeu. */
     const noms = [...new Set(liste.map(item => item.personnage.nom))];
     const nom = choisirAleatoirement(noms);
     question = choisirAleatoirement(liste.filter(item => item.personnage.nom === nom));
