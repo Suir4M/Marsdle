@@ -3,7 +3,7 @@
    =========================================================
 
    Les liens sont générés automatiquement à partir de data.js
-   (espèce, famille, cheveux, saison, rôle, genre).
+   (genre, espèce, maison, rôle, livre, année de naissance).
    Tu peux en ajouter de plus fins dans LIENS_PERSO ci-dessous.
 
    Règle du jeu : un lien est gagnant s'il s'applique aux 4 personnages
@@ -15,7 +15,7 @@
    Les noms doivent être écrits exactement comme dans data.js.
    Il faut au moins 4 personnages pour qu'un lien puisse être tiré au sort.
    Exemple :
-     ["Amoureux de Katherine", ["Stefan Salvatore", "Damon Salvatore", "Elijah Mikaelson", "Mason Lockwood"]],
+     ["Membres de l'AD", ["Harry Potter", "Hermione Granger", "Ron Weasley", "Neville Londubat"]],
 */
 const LIENS_PERSO = [
 ];
@@ -23,7 +23,9 @@ const LIENS_PERSO = [
 function construireLiens() {
   const liens = [];
 
-  function ajouter(nom, test, { tirable = true, max = 22 } = {}) {
+  /* max : au-delà de ce nombre de membres, le lien reste proposable comme réponse
+     mais n'est jamais tiré au sort (trop large pour faire une bonne énigme). */
+  function ajouter(nom, test, { tirable = true, max = 40 } = {}) {
     const membres = PERSONNAGES.filter(test).map(p => p.nom);
     liens.push({
       nom,
@@ -32,26 +34,33 @@ function construireLiens() {
     });
   }
 
-  ["Homme", "Femme"].forEach(g =>
-    ajouter(`Genre : ${g}`, p => p.genre === g, { tirable: false }));
+  /* Genre : data.js stocke des codes (H, F, A), pas les mots. */
+  ["H", "F"].forEach(g =>
+    ajouter(`Genre : ${GENRES[g]}`, p => p.genre === g, { tirable: false }));
 
+  /* Espèce : le code "S" (Sorcier) est exclu, presque tout le monde l'est. */
   [...new Set(PERSONNAGES.flatMap(p => p.espece.split("/")))]
     .filter(e => ESPECES[e] !== "Sorcier")
     .forEach(e => ajouter(`Espèce : ${ESPECES[e]}`, p => p.espece.split("/").includes(e)));
 
   [...new Set(PERSONNAGES.map(p => p.maison))]
-    .filter(f => MAISONS[f] !== "Aucune")
-    .forEach(f => ajouter(`Maison : ${MAISONS[f]}`, p => p.maison === f));
+    .filter(m => MAISONS[m] !== "Aucune")
+    .forEach(m => ajouter(`Maison : ${MAISONS[m]}`, p => p.maison === m));
 
+  /* Rôle : on teste bien le champ "role" (et non "espece" : les codes de lettres
+     se ressemblent, ex. M = Moldu côté espèce mais Mangemort côté rôle). */
   [...new Set(PERSONNAGES.flatMap(p => p.role.split("/")))]
-    .filter(c => ROLES[c] !== "Autre")
-    .forEach(c => ajouter(`Rôle : ${ROLES[c]}`, p => p.espece.split("/").includes(c)));
+    .filter(r => ROLES[r] !== "Autre")
+    .forEach(r => ajouter(`Rôle : ${ROLES[r]}`, p => p.role.split("/").includes(r)));
 
-  [...new Set(PERSONNAGES.map(p => p.livre))].forEach(r =>
-    ajouter(`Première Apparition Livre : ${r}`, p => p.livre === r));
+  [...new Set(PERSONNAGES.map(p => p.livre))].sort((a, b) => a - b).forEach(l =>
+    ajouter(
+      l === 0 ? "Première apparition : hors des livres" : `Première apparition : livre ${l}`,
+      p => p.livre === l
+    ));
 
-  [...new Set(PERSONNAGES.map(p => p.annee))].sort((a, b) => a - b).forEach(s =>
-    ajouter(`Année de Naissance : ${s}`, p => p.annee === s, { max: 99 }));
+  [...new Set(PERSONNAGES.map(p => p.annee))].sort((a, b) => a - b).forEach(a =>
+    ajouter(`Année de naissance : ${a}`, p => p.annee === a));
 
   LIENS_PERSO.forEach(([nom, noms]) => {
     const valides = noms.filter(n => trouverPersonnage(n));
@@ -61,16 +70,31 @@ function construireLiens() {
   return liens;
 }
 
-function combinaisons(liste, k) {
+/* Groupes de 4 parmi une liste : tous si c'est raisonnable,
+   sinon un échantillon aléatoire (évite de ralentir le téléphone). */
+function groupesDeQuatre(liste, maximum = 3000) {
+  const n = liste.length;
+  const total = (n * (n - 1) * (n - 2) * (n - 3)) / 24;
+
+  if (total <= maximum) {
+    const resultat = [];
+    for (let a = 0; a < n; a++)
+      for (let b = a + 1; b < n; b++)
+        for (let c = b + 1; c < n; c++)
+          for (let d = c + 1; d < n; d++)
+            resultat.push([liste[a], liste[b], liste[c], liste[d]]);
+    return resultat;
+  }
+
   const resultat = [];
-  (function aller(debut, courant) {
-    if (courant.length === k) { resultat.push([...courant]); return; }
-    for (let i = debut; i < liste.length; i++) {
-      courant.push(liste[i]);
-      aller(i + 1, courant);
-      courant.pop();
+  for (let i = 0; i < maximum; i++) {
+    const copie = [...liste];
+    const groupe = [];
+    for (let k = 0; k < 4; k++) {
+      groupe.push(copie.splice(Math.floor(Math.random() * copie.length), 1)[0]);
     }
-  })(0, []);
+    resultat.push(groupe);
+  }
   return resultat;
 }
 
@@ -99,7 +123,7 @@ function initialiserModeLien(sectionId) {
 
   function tirerPuzzle() {
     cible = choisirAleatoirement(LIENS.filter(l => l.tirable));
-    const candidats = combinaisons([...cible.membres], 4);
+    const candidats = groupesDeQuatre([...cible.membres]);
 
     /* On garde les groupes de 4 qui ont le moins d'autres liens possibles :
        le puzzle est alors plus net (souvent un seul lien valable). */
