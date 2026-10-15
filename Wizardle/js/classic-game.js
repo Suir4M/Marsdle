@@ -23,8 +23,8 @@ function initialiserModeClassique() {
 
   /* Valeurs multiples (espèces, rôles) : vert = identiques, orange = au moins une en commun */
   function comparerCodes(codeEssai, codeCible) {
-    const a = codeEssai.split("");
-    const b = codeCible.split("");
+    const a = codeEssai.split("/");
+    const b = codeCible.split("/");
     const communs = a.filter(code => b.includes(code));
 
     if (communs.length === a.length && a.length === b.length) return "ok";
@@ -32,7 +32,7 @@ function initialiserModeClassique() {
   }
 
   function nomsCodes(code, table) {
-    return code.split("").map(c => table[c]).join("<br>");
+    return code.split("/").map(c => table[c]).join("<br>");
   }
 
   function cellule(valeur, classe) {

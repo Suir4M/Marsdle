@@ -36,7 +36,6 @@ function creerJeuCitation(sectionId, liste) {
           ${creerAvatar(question.personnage, "lg")}
           <span>
             🎉 C’était <b>${question.personnage.nom}</b> !
-            <small>joué par ${question.personnage.acteur}</small>
             Trouvé en ${mauvaisesReponses.length + 1}
             essai${mauvaisesReponses.length ? "s" : ""}.
           </span>

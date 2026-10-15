@@ -1,5 +1,5 @@
 /* =========================================================
-   Données de Poudledle
+   Données de Wizardle
    ========================================================= */
 
 const GENRES = { H: "Homme", F: "Femme", A: "Aucun" };
@@ -45,29 +45,29 @@ const ROLES = {
 
 
 const PERSONNAGES_BRUTS = `
-Harry Potter|H|S|G|EO|1|1980
-Hermione Granger|F|S|G|EO|1|1979
-Ron Weasley|H|S|G|EO|1|1980
+Harry Potter|H|S|G|E/O|1|1980
+Hermione Granger|F|S|G|E/O|1|1979
+Ron Weasley|H|S|G|E/O|1|1980
 Neville Londubat|H|S|G|E|1|1980
-Albus Dumbledore|H|S|G|PO|1|1881
+Albus Dumbledore|H|S|G|P/O|1|1881
 Aberforth Dumbledore|H|S|A|A|1|1884
 Minerva McGonagall|F|S|G|P|1|1935
 Sibylle Trelawney|F|S|A|P|3|1962
-Severus Rogue|H|S|S|PMO|1|1960
-Rubeus Hagrid|H|SG|G|PO|1|1928
-Drago Malefoy|H|S|S|EM|1|1980
+Severus Rogue|H|S|S|P/M/O|1|1960
+Rubeus Hagrid|H|S/G|G|P/O|1|1928
+Drago Malefoy|H|S|S|E/M|1|1980
 Vernon Dursley|H|M|A|A|1|1943
 Pétunia Dursley|F|M|A|A|1|1958
 Dudley Dursley|H|M|A|A|1|1980
 Marge Dursley|F|M|A|A|3|1945
 Lord Voldemort|H|S|S|M|1|1926
 Quirinus Quirrell|H|S|D|P|1|1957
-Fred Weasley|H|S|G|EO|1|1978
-George Weasley|H|S|G|EO|1|1978
-Ginny Weasley|F|S|G|EO|1|1981
-Percy Weasley|H|S|G|EY|1|1976
+Fred Weasley|H|S|G|E/O|1|1978
+George Weasley|H|S|G|E/O|1|1978
+Ginny Weasley|F|S|G|E/O|1|1981
+Percy Weasley|H|S|G|E/Y|1|1976
 Molly Weasley|F|S|A|O|1|1949
-Arthur Weasley|H|S|G|YO|2|1950
+Arthur Weasley|H|S|G|Y/O|2|1950
 Olivier Dubois|H|S|G|E|1|1973
 Lee Jordan|H|S|G|E|1|1978
 Seamus Finnigan|H|S|G|E|1|1980
@@ -85,32 +85,32 @@ Gilderoy Lockhart|H|S|D|P|2|1964
 Dobby|H|E|A|A|2|1930
 Kreattur|H|E|A|A|5|1880
 Sirius Black|H|S|G|O|3|1959
-Remus Lupin|H|SL|G|PO|3|1960
-Peter Pettigrow|H|S|G|MOR|1|1960
+Remus Lupin|H|S/L|G|P/O|3|1960
+Peter Pettigrow|H|S|G|M/O/R|1|1960
 James Potter|H|S|G|O|1|1960
 Lily Potter|F|S|G|O|1|1960
 Cornelius Fudge|H|S|A|Y|2|1930
-Kingsley Shacklebolt|H|S|A|YO|5|1960
-Dolores Ombrage|F|S|S|PY|5|1937
+Kingsley Shacklebolt|H|S|A|Y/O|5|1960
+Dolores Ombrage|F|S|S|P/Y|5|1937
 Bellatrix Lestrange|F|S|S|M|5|1951
 Lucius Malefoy|H|S|S|M|2|1954
 Narcissa Malefoy|F|S|A|A|6|1955
 Vincent Crabbe|H|S|S|E|1|1980
 Gregory Goyle|H|S|S|E|1|1980
 Viktor Krum|H|S|A|E|4|1976
-Fleur Delacour|F|SV|A|EO|4|1977
+Fleur Delacour|F|S/V|A|E/O|4|1977
 Barty Croupton Sr|H|S|A|Y|4|1930
-Barty Croupton Jr|H|S|A|MP|4|1962
-Igor Karkaroff|H|S|A|MP|4|1940
-Olympe Maxime|F|SG|A|P|4|1935
-Alastor Maugrey|H|S|A|PYO|4|1940
+Barty Croupton Jr|H|S|A|M/P|4|1962
+Igor Karkaroff|H|S|A|M/P|4|1940
+Olympe Maxime|F|S/G|A|P|4|1935
+Alastor Maugrey|H|S|A|P/Y/O|4|1940
 Rita Skeeter|F|S|A|A|4|1951
-Nymphadora Tonks|F|S|P|YO|5|1973
+Nymphadora Tonks|F|S|P|Y/O|5|1973
 Horace Slughorn|H|S|S|P|6|1928
 Pomona Chourave|F|S|P|P|2|1950
-Filius Flitwick|H|SB|D|P|1|1952
-Ollivander|H|S|A|A|1|1930
-Gripsec|H|SB|A|A|1|1850
+Filius Flitwick|H|S/B|D|P|1|1952
+Garrick Ollivander|H|S|A|A|1|1930
+Gripsec|H|S/B|A|A|1|1850
 Choixpeau Magique|A|O|A|A|1|990
 Nagini|F|N|A|M|4|1920
 Buck|H|H|A|A|3|1990
@@ -122,7 +122,7 @@ Basilic|H|A|A|A|2|1000
 Crockdur|H|C|A|A|1|1985
 Pattenrond|H|Z|A|A|3|1988
 Katie Bell|F|S|G|E|1|1979
-Fenrir Greyback|H|SL|A|M|6|1950
+Fenrir Greyback|H|S/L|A|M|6|1950
 Argus Rusard|H|Q|A|A|1|1950
 Bill Weasley|H|S|G|O|2|1970
 Charlie Weasley|H|S|G|O|2|1972

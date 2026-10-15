@@ -4,6 +4,10 @@
 
 document.addEventListener("DOMContentLoaded", () => {
   initialiserModeClassique();
+  creerJeuFlou("c");
+  creerJeuLieu("g");
+  initialiserModeBaguette();
+  initialiserModeLien("i");
 
   creerJeuSimple(
     "b",
@@ -56,10 +60,6 @@ document.addEventListener("DOMContentLoaded", () => {
     potionsPourPicker,
     "Nom d’une potion…"
   );
-
-  creerJeuLieu("g");
-
-  initialiserModeBaguette();
 
   const accueil = $("#home");
   const boutonRetour = $("#back");

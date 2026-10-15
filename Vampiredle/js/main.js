@@ -6,6 +6,7 @@ document.addEventListener("DOMContentLoaded", () => {
   initialiserModeClassique();
   creerJeuFlou("c");
   creerJeuCitation("b", CITATIONS);
+  initialiserModeLien("d");
 
   const accueil = $("#home");
   const boutonRetour = $("#back");

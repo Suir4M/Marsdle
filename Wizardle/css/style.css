@@ -183,3 +183,48 @@ button{touch-action:manipulation;-webkit-tap-highlight-color:transparent}
 .baguette-img .big {
   font-size: 64px;
 }
+
+
+/* Mode Point commun */
+.lien-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin: 6px 0 14px; }
+.lien-p {
+  display: flex; flex-direction: column; gap: 6px; min-width: 0;
+  padding: 6px 6px 8px; text-align: center; font-size: 12px; font-weight: 700;
+  background: var(--card); backdrop-filter: blur(6px);
+  border: 1px solid var(--bd); border-radius: 14px;
+}
+/* Cadre portrait (3:4) : la photo remplit le cadre sans jamais être écrasée */
+.lien-photo {
+  position: relative; width: 100%; aspect-ratio: 3 / 4; overflow: hidden;
+  border-radius: 10px; background: #5a1a28; border: 1px solid var(--gold);
+}
+.lien-photo img {
+  position: absolute; inset: 0; width: 100%; height: 100%;
+  object-fit: cover; object-position: center top; z-index: 2;
+}
+.lien-photo b {
+  position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;
+  font-size: 26px; color: var(--gold);
+}
+.lien-photo.fallback img { display: none; }
+.lien-p span { overflow-wrap: anywhere; line-height: 1.2; }
+
+.essai-lien {
+  display: flex; justify-content: space-between; align-items: center; gap: 8px;
+  margin-top: 6px; padding: 9px 12px; font-size: 14px;
+  background: var(--card); border: 1px solid var(--bd); border-radius: 12px;
+}
+.pts { display: flex; align-items: center; gap: 4px; font-family: system-ui, sans-serif; font-size: 12px; white-space: nowrap; }
+.pt { display: inline-block; width: 12px; height: 12px; border-radius: 50%; }
+.pt.ok { background: var(--ok); } .pt.no { background: var(--no); }
+
+@media (max-width: 480px) {
+  .lien-grid { gap: 5px; }
+  .lien-p { font-size: 10.5px; padding: 4px 4px 6px; }
+  .lien-photo b { font-size: 20px; }
+  main { padding-left: 6px; padding-right: 6px; }
+  h1 { font-size: 30px; }
+  .row { gap: 2px; }
+  .c { font-size: 8px; padding: 5px 1px; min-height: 42px; border-radius: 7px; }
+  .hd .c { font-size: 7.5px; }
+}
