@@ -2,7 +2,8 @@
    Mode Citation
    ========================================================= */
 
-function creerJeuCitation(sectionId, liste) {
+function creerJeuCitation(sectionId, liste, options = {}) {
+  const config = { afficherActeur: false, ...options };
   const section = document.querySelector(`#${sectionId}`);
 
   section.innerHTML = `
@@ -36,7 +37,6 @@ function creerJeuCitation(sectionId, liste) {
           ${creerAvatar(question.personnage, "lg")}
           <span>
             🎉 C’était <b>${question.personnage.nom}</b> !
-            <small>joué par ${question.personnage.acteur}</small>
             Trouvé en ${mauvaisesReponses.length + 1}
             essai${mauvaisesReponses.length ? "s" : ""}.
           </span>

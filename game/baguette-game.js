@@ -19,9 +19,9 @@ function initialiserModeBaguette() {
   /* Le picker propose uniquement les personnages dont on connaît la baguette. */
   const personnagesPourPicker = BAGUETTES.map(baguette => baguette.personnage);
 
-  /* Image de la baguette : images/baguettes/harry-potter.png (🪄 si absente) */
+  /* Image de la baguette : images/harry-potter.png (🪄 si absente) */
   function imageBaguette(baguette) {
-    const chemin = `images/baguettes/${nomFichierImage(baguette.personnage.nom)}.png`;
+    const chemin = `images/${nomFichierImage(baguette.personnage.nom)}.png`;
     return `
       <div class="baguette-img">
         <img

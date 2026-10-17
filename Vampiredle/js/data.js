@@ -45,6 +45,9 @@ Elijah Mikaelson|Homme|Vampire|Mikaelson|Brun|2|Allié
 Rebekah Mikaelson|Femme|Vampire|Mikaelson|Blond|2|Allié
 Kol Mikaelson|Homme|Vampire|Mikaelson|Brun|3|Méchant
 Esther Mikaelson|Femme|Sorcier|Mikaelson|Brun|3|Méchant
+Roh-roh|Femme|Humain|Rousseau|Brun|0|Soeur
+`.trim();
+/**
 Silas|Homme|Sorcier/Doppelgänger|Aucune|Brun|4|Méchant
 Qetsiyah|Femme|Sorcier|Aucune|Brun|4|Méchant
 Nadia Petrova|Femme|Vampire/Doppelgänger|Petrova|Brun|5|Méchant
@@ -52,8 +55,7 @@ Enzo|Homme|Vampire|Aucune|Brun|5|Allié
 Lily Salvatore|Femme|Vampire|Salvatore|Brun|6|Méchant
 Kai Parker|Homme|Sorcier|Parker|Brun|6|Méchant
 Julian|Homme|Vampire|Aucune|Brun|6|Méchant
-Roh-roh|Femme|Humain|Rousseau|Brun|0|Soeur
-`.trim();
+ */
 
 const PERSONNAGES = PERSONNAGES_BRUTS.split("\n").map(ligne => {
   const [nom, genre, espece, famille, cheveux, saison, role] = ligne.split("|");

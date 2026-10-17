@@ -53,14 +53,15 @@ function construireLiens() {
     .filter(r => ROLES[r] !== "Autre")
     .forEach(r => ajouter(`Rôle : ${ROLES[r]}`, p => p.role.split("/").includes(r)));
 
-  [...new Set(PERSONNAGES.map(p => p.livre))].sort((a, b) => a - b).forEach(l =>
-    ajouter(
-      l === 0 ? "Première apparition : hors des livres" : `Première apparition : livre ${l}`,
-      p => p.livre === l
-    ));
+  [...new Set(PERSONNAGES.map(p => p.livre))]
+    .filter(l => l !== 0)
+    .sort((a, b) => a - b)
+    .forEach(l => ajouter( `Première apparition : livre ${l}`, p => p.livre === l));
 
-  [...new Set(PERSONNAGES.map(p => p.annee))].sort((a, b) => a - b).forEach(a =>
-    ajouter(`Année de naissance : ${a}`, p => p.annee === a));
+  [...new Set(PERSONNAGES.map(p => p.annee))]
+    .filter(a => a !== 0)
+    .sort((a, b) => a - b)
+    .forEach(a =>ajouter(`Année de naissance : ${a}`, p => p.annee === a));
 
   LIENS_PERSO.forEach(([nom, noms]) => {
     const valides = noms.filter(n => trouverPersonnage(n));
@@ -147,7 +148,7 @@ function initialiserModeLien(sectionId) {
         return `
           <div class="lien-p">
             <div class="lien-photo">
-              <img src="images/personnages/${nomFichierImage(p.nom)}.jpg" alt="Portrait de ${p.nom}"
+              <img src="images/${nomFichierImage(p.nom)}.jpg" alt="Portrait de ${p.nom}"
                    onerror="this.style.display='none'; this.parentElement.classList.add('fallback');">
               <b>${initiales(p.nom)}</b>
             </div>

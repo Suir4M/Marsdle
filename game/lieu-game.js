@@ -27,10 +27,10 @@ function creerJeuLieu(sectionId) {
   let disponibles = null; /* lieux dont la photo existe */
 
   function cheminPhoto(lieu) {
-    return `images/lieux/${nomFichierImage(lieu.personnage.nom)}.jpg`;
+    return `images/${nomFichierImage(lieu.personnage.nom)}.jpg`;
   }
 
-  /* Vérifie une seule fois quelles photos existent dans images/lieux/. */
+  /* Vérifie une seule fois quelles photos existent dans images/. */
   function chargerPhotosDisponibles() {
     if (disponibles) return Promise.resolve(disponibles);
 
@@ -97,7 +97,7 @@ function creerJeuLieu(sectionId) {
         zonePhoto.innerHTML = `
           <blockquote>
             Aucune photo trouvée. Ajoute des photos dans le dossier
-            <b>images/lieux/</b> (ex. <b>images/lieux/12-square-grimmaurd.jpg</b>).
+            <b>images/</b> (ex. <b>images/12-square-grimmaurd.jpg</b>).
           </blockquote>
         `;
         zonePicker.style.display = "none";
